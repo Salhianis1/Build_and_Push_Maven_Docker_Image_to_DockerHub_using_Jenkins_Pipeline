@@ -14,7 +14,7 @@ pipeline{
         stage('Build Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t salhianis20/my-app-1.0 .'
+                  sh 'sudo docker build -t salhianis20/my-app-1.0 .'
                 }
             }
         }
@@ -22,9 +22,9 @@ pipeline{
             steps {
                 script {
                  withCredentials([string(credentialsId: 'dockerhub_ID', variable: 'dockerhub_pwd')]) {
-                    sh 'docker login -u salhianis20 -p ${dockerhub_pwd}'
+                    sh 'sudo docker login -u salhianis20 -p ${dockerhub_pwd}'
                  }  
-                 sh 'docker push salhianis20/my-app-1.0'
+                 sh 'sudo docker push salhianis20/my-app-1.0'
                 }
             }
         
